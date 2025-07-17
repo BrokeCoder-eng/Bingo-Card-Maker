@@ -25,8 +25,6 @@ const exportUrl = `https://docs.google.com/spreadsheets/d/${BINGO_SPREADSHEET_ID
 }
 
 function email_daily_card(day_bingo_card) {
-  let type = typeof day_bingo_card;
-
   if (typeof day_bingo_card !== "object") {
     return;
   }
@@ -49,7 +47,7 @@ function email_daily_card(day_bingo_card) {
     <a href="${link_to_folder}">${link_to_folder}</a></p>
     `;
 
-    GmailApp.sendEmail(p.email, "Todays Bingo Card", "Bingo of the Day!",{ htmlBody: htmlContent });
+    GmailApp.sendEmail(p.email, "Todays Bingo Card", "Bingo of the Day!", { htmlBody: htmlContent });
   });
 }
 
@@ -63,9 +61,9 @@ function main() {
 
   email_daily_card(bingo_cards);
 
-  // bingo.setActiveSheet(day_card);
-  // bingo.duplicateActiveSheet();
-  // bingo.setActiveSheet(bingo.getSheets()[3]);
+  bingo.setActiveSheet(day_card);
+  bingo.duplicateActiveSheet();
+  bingo.setActiveSheet(bingo.getSheets()[3]);
 
-  // bingo.renameActiveSheet("Bingo no " + (bingo.getSheets().length - 3));
+  bingo.renameActiveSheet("Bingo no " + (bingo.getSheets().length - 3));
 }
